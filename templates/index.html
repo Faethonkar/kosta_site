@@ -1,117 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <style>
-        #termsModal {
-            display: none;
-            position: fixed;
-            z-index: 9999;
-            left: 0; top: 0;
-            width: 100vw; height: 100vh;
-            background: rgba(0,0,0,0.7);
-        }
-        #termsContent {
-            background: #fff;
-            padding: 2em;
-            margin: 10vh auto;
-            max-width: 400px;
-            border-radius: 8px;
-            text-align: left;
-            box-shadow: 0 2px 16px rgba(0,0,0,0.2);
-        }
-        #termsContent h2 { text-align: center; }
-        #termsContent button { margin-top: 1.5em; width: 100%; }
-        @media (max-width: 600px) {
-            #termsContent { max-width: 90vw; padding: 1em; }
-        }
-    </style>
-    <script>
-        function showTermsModal() {
-            document.getElementById('termsModal').style.display = 'block';
-            document.getElementById('siteContent').style.display = 'none';
-        }
-        function agreeTerms() {
-            document.getElementById('termsModal').style.display = 'none';
-            document.getElementById('siteContent').style.display = 'block';
-        }
-        window.onload = showTermsModal;
-    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Econ Cycle AI</title>
     <link rel="stylesheet" href="/static/style.css">
     <style>
-        #termsModal {
-            display: none;
-            position: fixed;
-            z-index: 9999;
-            left: 0; top: 0;
-            width: 100vw; height: 100vh;
-            background: rgba(0,0,0,0.7);
-        }
-        #termsContent {
-            background: #fff;
-            padding: 2em;
-            margin: 10vh auto;
-            max-width: 400px;
-            border-radius: 8px;
-            text-align: left;
-            box-shadow: 0 2px 16px rgba(0,0,0,0.2);
-        }
-        #termsContent h2 { text-align: center; }
-        #termsContent button { margin-top: 1.5em; width: 100%; }
-        @media (max-width: 600px) {
-            #termsContent { max-width: 90vw; padding: 1em; }
-        }
+        #termsModal { display:none; position:fixed; z-index:9999; inset:0; background:rgba(0,0,0,0.7); }
+        #termsContent { background:#fff; padding:2em; margin:10vh auto; max-width:480px; border-radius:10px; box-shadow:0 4px 24px rgba(0,0,0,.25); font-size:.95rem; }
+        #termsContent h2 { text-align:center; margin-top:0; }
+        #termsContent p { line-height:1.4; }
+        #termsContent button { margin-top:1.25em; width:100%; }
+        #termsContent a { color:#0a5dc2; text-decoration:underline; }
+        @media (max-width:600px){ #termsContent{margin:5vh 1rem; padding:1.25rem; max-width:100%;} }
     </style>
     <script>
-        function checkAgreement() {
-            if (!document.cookie.includes('agreed_terms=yes')) {
-                document.getElementById('termsModal').style.display = 'block';
-                document.getElementById('siteContent').style.display = 'none';
+        function showGate(){
+            if(!document.cookie.includes('agreed_terms=yes')){
+                document.getElementById('termsModal').style.display='block';
+                document.getElementById('siteContent').setAttribute('aria-hidden','true');
             }
         }
-        function agreeTerms() {
-            document.cookie = 'agreed_terms=yes; path=/; max-age=' + (60*60*24*365);
-            document.getElementById('termsModal').style.display = 'none';
-            document.getElementById('siteContent').style.display = 'block';
+        function agreeTerms(){
+            document.cookie='agreed_terms=yes; path=/; max-age='+(60*60*24*365);
+            document.getElementById('termsModal').style.display='none';
+            document.getElementById('siteContent').removeAttribute('aria-hidden');
         }
-        window.onload = checkAgreement;
+        window.addEventListener('load', showGate);
     </script>
 </head>
 <body>
-    <div id="termsModal">
+    <div id="termsModal" role="dialog" aria-modal="true" aria-labelledby="termsTitle">
         <div id="termsContent">
-            <h2>Terms of Use</h2>
-            <p><strong>Last updated:</strong> August 24, 2025</p>
-            <h3>Use of Website</h3>
-            <p>You agree to use the website only for lawful purposes and in a manner that does not infringe on the rights of others.</p>
-            <h3>Intellectual Property</h3>
-            <p>All content on this website (text, images, logos, etc.) is owned by or licensed to us. You may not copy, reproduce, or distribute it without permission.</p>
-            <h3>User Content</h3>
-            <p>If you submit content (e.g., comments, forms), you grant us a non-exclusive right to use it.</p>
-            <h3>Limitation of Liability</h3>
-            <p>We do not guarantee that the website will be error-free or uninterrupted. Use at your own risk.</p>
-            <h3>Changes</h3>
-            <p>We may update these Terms from time to time. Continued use of the website means you accept the changes.</p>
-            <button onclick="agreeTerms()" class="button">OK</button>
-        </div>
-    </div>
-    <div id="siteContent">
-    <div id="termsModal">
-        <div id="termsContent">
-            <h2>Terms of Use</h2>
-            <p><strong>Last updated:</strong> August 24, 2025</p>
-            <h3>Use of Website</h3>
-            <p>You agree to use the website only for lawful purposes and in a manner that does not infringe on the rights of others.</p>
-            <h3>Intellectual Property</h3>
-            <p>All content on this website (text, images, logos, etc.) is owned by or licensed to us. You may not copy, reproduce, or distribute it without permission.</p>
-            <h3>User Content</h3>
-            <p>If you submit content (e.g., comments, forms), you grant us a non-exclusive right to use it.</p>
-            <h3>Limitation of Liability</h3>
-            <p>We do not guarantee that the website will be error-free or uninterrupted. Use at your own risk.</p>
-            <h3>Changes</h3>
-            <p>We may update these Terms from time to time. Continued use of the website means you accept the changes.</p>
+            <h2 id="termsTitle">Before You Continue</h2>
+            <p>By clicking OK you acknowledge you have read and agree to the <a href="/terms_of_use" target="_blank">Terms of Use</a>, <a href="/privacy_policy" target="_blank">Privacy Policy</a>, and <a href="/disclaimer" target="_blank">Disclaimer</a>.</p>
             <button onclick="agreeTerms()" class="button">OK</button>
         </div>
     </div>

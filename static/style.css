@@ -31,6 +31,23 @@ header h1 {
     letter-spacing: 1px;
 }
 
+/* Logo */
+.site-logo {
+    width: 140px;
+    max-width: 40vw;
+    height: auto;
+    display: block;
+    margin: 0 auto 0.75em auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    background: #fff;
+    padding: 4px;
+}
+
+@media (max-width: 600px) {
+    .site-logo { width: 110px; margin-bottom: 0.5em; }
+}
+
 /* Professional Navigation */
 nav {
     margin: 1em 0 0 0;

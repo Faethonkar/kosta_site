@@ -1,10 +1,15 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, redirect, url_for
 
 app = Flask(__name__)
 
 @app.route('/')
 def home():
-    return render_template('index.html')
+    # Permanent redirect to the SEO-friendly June 2025 business cycle update URL
+    return redirect(url_for('june_2025_business_cycle_update'), code=301)
+
+@app.route('/june-2025-business-cycle-update')
+def june_2025_business_cycle_update():
+    return render_template('june-2025-business-cycle-update.html')
 
 @app.route('/terms_of_use')
 def terms_of_use():

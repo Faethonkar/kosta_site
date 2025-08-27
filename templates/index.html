@@ -50,7 +50,7 @@
             <main>
                 <section>
                     <h2>Cycle Update</h2>
-                    <img src="/static/cycle_update.jpg" alt="Cycle Update" class="main-image">
+                    <img src="/static/cycle_update.jpg" alt="Cycle Update" class="main-image enlargeable" id="cycleUpdateImg">
                     <h3>U.S. Economic Update – June 2025</h3>
                     <p>In June, the U.S. economy showed clear signs of renewed momentum, supported by solid growth, steady inflation, and a resilient labor market. The key indicators were as follows:</p>
                     <ul>
@@ -109,5 +109,32 @@
                 <p>© 2025 Econ Cycle Lab. All rights reserved. Educational content only. Not investment advice. Please consult financial professionals for investment decisions.</p>
             </footer>
         </div>
+    <div class="lightbox-backdrop" id="imgLightbox" aria-hidden="true" role="dialog" aria-label="Expanded image view">
+        <button class="lightbox-close" type="button" aria-label="Close image" id="lightboxClose">×</button>
+        <img src="" alt="Expanded" id="lightboxImg">
+    </div>
+    <script>
+        (function(){
+            const trigger = document.getElementById('cycleUpdateImg');
+            const lightbox = document.getElementById('imgLightbox');
+            const lightboxImg = document.getElementById('lightboxImg');
+            const closeBtn = document.getElementById('lightboxClose');
+            if(!trigger) return;
+            function open(){
+                lightboxImg.src = trigger.src;
+                lightbox.classList.add('active');
+                lightbox.setAttribute('aria-hidden','false');
+                closeBtn.focus();
+            }
+            function close(){
+                lightbox.classList.remove('active');
+                lightbox.setAttribute('aria-hidden','true');
+            }
+            trigger.addEventListener('click', open);
+            closeBtn.addEventListener('click', close);
+            lightbox.addEventListener('click', (e)=>{ if(e.target===lightbox) close(); });
+            document.addEventListener('keydown', (e)=>{ if(e.key==='Escape' && lightbox.classList.contains('active')) close(); });
+        })();
+    </script>
 </body>
 </html>

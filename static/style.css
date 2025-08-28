@@ -128,13 +128,15 @@ section p {
 
 /* Professional Images */
 .main-image {
-    width: 100%;
-    max-width: 600px;
-    margin: 1.5em auto;
     display: block;
+    width: clamp(240px, 90vw, 520px); /* Scales fluidly but never exceeds native width */
+    max-width: 100%;
+    height: auto; /* Override fixed height from attributes for responsiveness */
+    margin: 1.5em auto;
     border-radius: 12px;
     box-shadow: 0 8px 24px rgba(0,0,0,0.15);
     transition: transform 0.3s ease;
+    image-rendering: auto;
 }
 
 .main-image:hover {
@@ -337,9 +339,14 @@ button[type="submit"]:hover {
         margin-bottom: 1em;
     }
     
-    .main-image {
-        max-width: 100%;
-    }
+    .main-image { width: clamp(220px, 95vw, 520px); }
+
+    figure .main-image { margin: 1em auto; }
+
+}
+
+@media (min-width: 1400px) {
+    .main-image { width: 520px; } /* lock at native size on very large screens */
 }
 
 /* Professional List Styles */

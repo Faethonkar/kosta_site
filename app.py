@@ -4,7 +4,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def home():
-    # Permanent redirect to the SEO-friendly June 2025 business cycle update URL
+    # Legacy index.html removed; root permanently redirects to canonical update slug
     return redirect(url_for('june_2025_business_cycle_update'), code=301)
 
 @app.route('/june-2025-business-cycle-update')
